@@ -15,12 +15,10 @@ end
 
 def add_friend(person, friend_name)
   person[:friends].push(friend_name)
-  return person[:friends].length
 end
 
 def remove_friend(person, friend_name)
   person[:friends].delete(friend_name)
-  return person[:friends].length
 end
 
 def total_money(people)
@@ -34,13 +32,12 @@ end
 def lend_money(lender, lendee, amount)
   lender[:monies] -= amount
   lendee[:monies] += amount
-  return [lender[:monies], lendee[:monies]]
 end
 
 def global_food(people)
   food_array = []
   for person in people
-    food_array.push(person[:favourites][:snacks])
+    food_array.concat(person[:favourites][:snacks])
   end
   return food_array
 end
@@ -48,8 +45,8 @@ end
 def loners(people)
   lonely_array = []
   for person in people
-    if person[:friends] == []
-      lonely_array.push(person[:name])
+    if person[:friends].length == 0
+      lonely_array.push(person)
     end
   end
   return lonely_array
